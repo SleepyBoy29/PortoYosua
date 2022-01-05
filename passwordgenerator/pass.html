@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--==== CSS ====-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style_key1.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/style_key2.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/style_key3.css" />
+    <!--==== Javascript ====-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
+    
+
+    <script>
+        $(document).ready(function() {
+            $('.tooltip').tooltipster({
+                theme: 'tooltipster-light',
+                side: 'bottom'
+            });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>RPG | Random Password Generator </title>
+    <meta name="description" content="Strong password generator based on javascript code by Nayuki">
+    
+    <!--==== Style code ====-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style_key.css" />
+    <link rel="icon" type="image/png"  href="../assets/images/favicon-key.png">
+    <link rel="manifest" href="../assets/images/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+
+<!--==== HTML body code ====-->
+
+<body>
+
+    <form id="generapass" name="generapass" action="#" method="get" onsubmit="doGenerate(event);">
+
+        <div id="charset" class="section">
+            <h1>Random Password Generator</h1>
+            <p style="margin:0.3em 0em; font-size: 110%">Character set:</p>
+
+            <p>
+                <input type="checkbox" id="charset-0" checked>
+                <label for="charset-0"> Numbers <small>(0123456789)</small></label>
+            </p>
+            <p>
+                <input type="checkbox" id="charset-1" checked>
+                <label for="charset-1"> Lowercase <small>(abcdefghijklmnopqrstuvwxyz)</small></label>
+            </p>
+            <p>
+                <input type="checkbox" id="charset-2" checked>
+                <label for="charset-2"> Uppercase <small>(ABCDEFGHIJKLMNOPQRSTUVWXYZ)</small></label>
+            </p>
+            <p>
+                <input type="checkbox" id="charset-3" checked>
+                <label for="charset-3"> ASCII symbols <small>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</small></label>
+            </p>
+            <p>
+                <input type="checkbox" id="charset-4">
+                <label for="charset-4"> Space <small>( )</small></label>
+            </p>
+
+            <p>
+                <input type="checkbox" id="custom" />
+                <label for="custom">Custom:</label><input type="text" id="customchars" value="" size="15" style="width:10em; font-size:80%" oninput="document.getElementById('custom').checked=true;">
+            </p>
+
+
+
+        </div>
+        <div class="section" style="margin:0.8em 0em">
+            <table id="type">
+                <tbody>
+                    <tr>
+                        <td><input type="radio" name="type" id="by-length" checked="checked"> <label for="by-length">Length:&#xA0;</label></td>
+                        <td><input type="number" min="0" value="16" step="1" id="length" style="width:4em" oninput="document.getElementById('by-length').checked=true;"> characters</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="type" id="by-entropy"> <label for="by-entropy">Entropy:</label>&#xA0;</td>
+                        <td><input type="number" min="0" value="128" step="any" id="entropy" style="width:4em" oninput="document.getElementById('by-entropy').checked=true;"> bits</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="section">
+            <h1 class="h1-generate">
+                Generate
+            </h1>
+            <div class="pwd-p">
+                <div class="bottoni">
+                    <button value="Generate" class="generate tooltip" id="box" title="Generate">new
+                    </button>
+                    <img src ="assets\images\copy.png" width="25px" height="25px" value="Copy" id="copy-button" onclick="doCopy();" disabled="disabled" alt="Copy" class="tooltip" title="Copy">
+                    </img>
+                </div>
+                <span id="password"></span>
+            </div>
+
+            <div class="lp-pg-generated-password">
+                <div id="barra_bg" class="lp-pg-generated-password__strength-wrapper">
+                    <div id="barra" class="lp-pg-generated-password__strength" style="width:0%;"></div>
+                </div>
+            </div>
+            <p id="statistics" class="lowlight" style="font-size:85%">&#xA0;</p>
+            
+            <hr>
+            <p class="lowlight" style="font-size:80%">© 2021 -
+            <script type='text/javascript'>
+            	var date = new Date();
+            	var yy = date.getYear();
+            	var year = (yy < 1000) ? yy + 1900 : yy;
+            	document.write(year);
+            </script>
+            . Design by
+            <a href="https://github.com/SleepyBoy29" target="_blank"> Yosua</a>
+            </p>
+
+        </div>
+    </form>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <p>Copied</p>
+        </div>
+
+    </div>
+
+
+    <!--==== JavaScript code ====-->
+    <script>
+        // Code that submit the form on page load (the first time)
+        $(document).ready(function() {
+            if ($("#password").val() == "") {
+                $("#generapass").submit();
+            }
+        });
+    </script>
+
+    <!-- For the following code is edited from the Project Nayuki - https://www.nayuki.io/page/random-password-generator-javascript -->
+    <script type="text/javascript" src="../assets/js/script_key.js"></script>
+</body>
+
+</html>

@@ -1,7 +1,7 @@
 function mostrar(e) {
-    if (e.classList.contains("fa-sun-o")) { //se tem lua
-        e.classList.remove("fa-sun-o"); //remove classe icone lua
-        e.classList.add("fa-moon-o"); //coloca classedo sol
+    if (e.classList.contains("fa-sun")) { //se tem lua
+        e.classList.remove("fa-sun"); //remove classe icone lua
+        e.classList.add("fa-cloud-moon"); //coloca classedo sol
         e.style.color = "rgb(10, 10, 10)";
         document.body.style.background = 'rgb(243, 242, 242)';
         document.querySelector('#userName').style.color = 'rgb(99, 99, 99)';
@@ -27,8 +27,8 @@ function mostrar(e) {
         }
 
     } else { //senão
-        e.classList.remove("fa-moon-o"); //remove classe icone lua
-        e.classList.add("fa-sun-o"); //coloca classedo sol
+        e.classList.remove("fa-cloud-moon"); //remove classe icone lua
+        e.classList.add("fa-sun"); //coloca classedo sol
         e.style.color = "#FFFF00";
         document.body.style.background = 'rgb(10, 10, 10)';
         document.querySelector('#userName').style.color = '#fff';

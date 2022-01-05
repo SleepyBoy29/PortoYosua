@@ -1,0 +1,2 @@
+untuk menggunakan css icon font awesome pake
+fontawesome-5.15.4/css/all.min.css
