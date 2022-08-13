@@ -3,42 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- bracket -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="shortcut icon" type="image/png" href="..\assets\images\quote.png" />
+  <link rel="shortcut icon" type="image/png" href="../assets/images/quote.png" />
   <!-- 'classic' theme colour picker -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/>
   <!-- 'classic' theme colour picker-->
-  <link rel="stylesheet" href="..\assets\css\style_quote.css">
+  <link rel="stylesheet" href="../assets/css/style_quote.css">
   <title>Quote Generator & Color Picker</title>
 </head>
 <body>
 
-  <main>
-
-    <div class="container">
-      <div class="quotes-container">
-        <div class="inner-quotes-container">
+    <div class="box">
+            <i class="fas fa-quote-right fa2"></i>
+        <div class="text">
+            <i class="fas fa-quote-left fa1"></i>
+            <div>
+                <h1>Quote of the Day</h1>
+                
           <p id="quote"></p>
           <h3 id="author"></h3>
         </div>
-
-
-<table>
-  <tr>
-    <th><div class="quote-btn"><div class="color-picker pull-right" style="border:5px solid black"></div></div></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th><div class="quote-btn"><button class="btn btn-info"
-              style="background-color: #B4B4B4;height:25px; width: 200px; padding:0px;border-radius: 10px;-moz-border-radius: 10px;-webkit-border-radius: 10px;" id="generate">Generate Quote</button>
-        </div>
-    </th>
-  </tr>
-</table>
-      </div>
     </div>
-  </main>
+
+
+      </div>
+      <div class="button">  
+      <table>
+        <tr>
+          <th><div class="quote-btn"><div class="color-picker pull-right" style="border:5px solid black"></div></div></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th><div class="quote-btn"><button class="btn btn-info"
+              style="background-color: #B4B4B4;height:25px; width: 200px; padding:0px;border-radius: 10px;-moz-border-radius: 10px;-webkit-border-radius: 10px;" id="generate">Generate Quote</button>
+              </div>
+          </th>
+        </tr>
+      </table>
+      </div>
+
+
   <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
-  <script src ="..\assets\js\script_quote.js"></script>
+  <script src ="../assets/js/script_quote.js"></script>
 </body>
 </html>

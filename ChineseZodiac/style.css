@@ -1,0 +1,23 @@
+body {
+    /*background-color: #bf4040;*/
+	background-image: url('public/Untitled-2.jpg');
+	box-shadow: inset 0 0 0 1000px rgba(0,0,0,.2);
+}
+
+h1 {
+    color: #ffffff;
+    text-align: center;
+    font-size: 100px;
+}
+
+h2{
+    color: #ffffff;
+    text-align: center;
+}
+
+p {
+	color: #ffffff;
+    font-family: "Calibri";
+    font-size: 30px;
+}
+

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="jquery-1.11.1.min.js"></script>
+  <!-- script_zodiac.js contains Javascipt for this page -->
+  <script src="script_zodiac.js"></script>
+  <title>Chinese Zodiac Calculator</title>
+  <link rel="shortcut icon" href="public/Yin_yang.png" >
+
+</head>
+<body>
+  <div>
+  <table style="width:100%">
+  <tr>
+  <th colspan="2"><h1>
+  <p>
+    Chinese Zodiac Calculator
+  </p></h1>
+  </th>
+  </tr>
+  <tr>
+    <td style="width:50%" rowspan="2">
+    <h1>
+      
+      <!-- Image source : https://internchina.com/chinese-zodiac-animal-of-the-year-calculated-by-the-lunar-calendar/-->
+      <img id="zodiacImage" src="public/images/CHINESE_ZODIAC.png" width="250" height=auto>
+    </h1>
+    </td>
+    <td style="width:50%">
+          <h2>
+      <p>
+        <form>
+          <!-- Customization, possibility to enter name or leave it blank -->
+          First name:<br>
+          <input id="firstname" type="text" name="firstname"><br>
+          Last name:<br>
+          <input id="lastname" type="text" name="lastname">
+        </form>
+    </p>
+
+
+<!-- Enter your date of birth to know your chinese sign -->
+Select your date of birth :<br>
+Day :
+ <select name="day" id="day"></select>
+
+<!-- Loop for the days -->
+<script>
+var startDay = 1;
+var endDay = 31;
+var optionsDay = "";
+for(var d = startDay ; d <= endDay; d++){
+  optionsDay += "<option>"+ d +"</option>";
+}
+document.getElementById("day").innerHTML = optionsDay;
+</script>
+
+<!-- Options for the months -->
+<select name="month" id="month">
+  <option value="1">January</option>
+  <option value="2">February</option>
+  <option value="3">March</option>
+  <option value="4">April</option>
+  <option value="5">May</option>
+  <option value="6">June</option>
+  <option value="7">July</option>
+  <option value="8">August</option>
+  <option value="9">September</option>
+  <option value="10">October</option>
+  <option value="11">November</option>
+  <option value="12">December</option>
+</select>
+
+<select name="year" id="year">
+
+</select>
+<!-- Loop for the year, fron 1900 to current year -->
+<script>
+var startYear = 1900;
+var endYear = new Date().getFullYear();
+//var endYear = 2099;
+var optionsYear = "";
+for(var y = endYear ; y >= startYear; y--){
+  optionsYear += "<option>"+ y +"</option>";
+}
+document.getElementById("year").innerHTML = optionsYear;
+</script>
+
+<button type="button" onclick="scriptButton()">Reveal !</button>
+
+</h2>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p id="answer"></p>
+      <!--<p id="answer2"></p>-->
+      <!--<p id="answer3"></p>-->
+      <p id="signsDescription"></p><br>
+      <p id="elementsDescription"></p>
+    </td>
+  </tr>
+</table>
+    
+
+
+</div>
+
+</body>
+</html>
+
+  

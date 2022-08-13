@@ -71,6 +71,13 @@ body {
     font-weight: bold;
     transition: all .25s cubic-bezier(.08, .59, .29, .99);
     border: solid var(--accentColor) 2px;
+	box-shadow: 0 9px #999;
+}
+
+.link:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 .link:hover {
@@ -117,6 +124,7 @@ body {
 .day_mode:hover {
     cursor: pointer;
 }
+
 
 #copyright {
     color: #fff;

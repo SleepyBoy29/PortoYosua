@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<title>SCHUMANNCOMBO — User Interface & Icon Design</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  
+	<meta name="robots" content="index,follow" />
+	<meta name="audience" content="Alle" />
+	<meta name="revisit-after" content="7 days" />
+
+	<meta name="description" content="I am Richard from Berlin. I design Interfaces & Icons.">
+	<meta name="keywords" content="screen design, application design, web design, interface design, art director, freelancer, berlin, richard schumann, online art director, iOS design, iphone design, gestalter, frontend, layout, css, webdesign, screendesign, interfacedesign, app design, html5, ipad, mobile, multi device, design studio, strategic design, visual language, interface, interaction, ux, user experience, gui, ui">
+
+	<meta property="og:title" content="SCHUMANNCOMBO">
+	<meta property="og:description" content="Icon Design, Interface Design & Frontend Design.">
+
+	<!--1200 x 630 Pixel mit einem 1,91:1 Format-->
+	<meta property="og:image" content="https://schumanncombo.com/assets/images/richard.jpg">
+	
+	<meta property="og:url" content="https://schumanncombo.com">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@schumanncombo">
+
+	<link href="assets/css/app.css?v1" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+	<script src="https://unpkg.com/@lottiefiles/lottie-player@0.3.0/dist/lottie-player.js"></script>
+
+	<script src="assets/js/app.js"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-173953076-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-173953076-1');
+	</script>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+<nav>
+
+	<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" stroke-width="1px" stroke="#000"><path d="M32.5 31.5v1h-1v-1zM32.5 47v1h-1v-1zM32.5 16v1h-1v-1z"/></svg>
+	<ul>
+
+		<li><a class="logo"  href="intro">SCHUMANN<br/>COMBO</a></li>
+
+		<li class="seperator"></li>
+
+		<li><a  href="contact">About&thinsp;/&thinsp;Contact</a></li>
+		<li><a  href="clients">Clients</a></li>
+		
+
+		<li class="seperator"></li>
+
+				
+		<li><a  href="fusion">Fusion</a></li>
+		
+				
+		<li><a  href="blackyak">BlackYak</a></li>
+		
+				
+		<li><a  href="freiheitsgrade">Freiheitsgrade</a></li>
+		
+				
+		<li><a  href="hashicon">Hashicon</a></li>
+		
+				
+		<li><a  href="emerald">Emerald</a></li>
+		
+				
+		<li><a  href="ikkko">IKKKO</a></li>
+		
+				
+		<li><a  href="tuevnord">Tüv Nord</a></li>
+		
+				
+		<li><a  href="softwareag">Software AG</a></li>
+		
+		
+		<li class="seperator"></li>
+
+		<li><a  href="imprint">Imprint</a></li>
+		<li><a  href="dsgvo">Privacy</a></li>
+
+
+
+	</ul>
+
+
+</nav>
+
+
+
+
+
+
+<script src="assets/js/cookie-min.js"></script>
+
+<div id="cookie">
+	By browse this website you are agreeing to the use of cookies. <a href="dsgvo">Privacy policy</a>. <button id="accept" onClick="acceptPolicy()">OK</button>
+</div>
+
+<section>
+
+	<h1>404 — This page doesn't exist anymore.</h1>
+    <a href="/">Back</a>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

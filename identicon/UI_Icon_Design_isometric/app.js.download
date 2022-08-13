@@ -1,0 +1,55 @@
+$(document).ready(function(){
+
+	// slide in menu
+	setInterval(function () {
+		$( "nav" ).addClass("active");
+	}, 500);
+
+	// slide in intro
+	setInterval(function () {
+		$( "section#intro" ).addClass("active");
+	}, 1000);
+
+
+
+	let observerConfig = {
+		root: null,
+		rootMargin: '0px 0px 0px 0px',
+		threshold: 0.1
+	};
+
+	const ani = document.querySelectorAll('.ani');
+
+	function handleIntersection(entries) {
+	  entries.map((entry) => {
+	    if (entry.isIntersecting) {
+	      entry.target.classList.add('in-view')
+	      entry.target.classList.remove('out-view')
+	    }
+	    else
+	    {
+	    	entry.target.classList.remove('in-view')
+	    	entry.target.classList.add('out-view')
+	    }
+	  });
+	}
+
+	const observer = new IntersectionObserver(handleIntersection, observerConfig);
+	ani.forEach(image => observer.observe(image));
+
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
