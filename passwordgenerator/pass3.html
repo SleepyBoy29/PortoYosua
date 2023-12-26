@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Encryption Playground</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1a1a1a; /* Black background */
+      color: #fff; /* White text */
+    }
+
+    header {
+      background-color: #fcd000; /* Yellow header */
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #fcd000; /* Yellow label text */
+    }
+
+    table {
+      width: 100%;
+    }
+
+    #dropdown-cell {
+      width: 30%; /* 30% width for dropdown */
+      padding-right: 20px; /* Add some space between dropdown and content */
+    }
+
+    #content-cell {
+      width: calc(70% - 20px); /* 70% width for content, subtracting the space from padding-right */
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #fcd000; /* Yellow border */
+      background-color: #333; /* Dark background for select */
+      color: #fff; /* White text */
+    }
+
+    #encryption-content {
+      padding: 20px;
+      background-color: #333; /* Dark background for content */
+      border: 1px solid #fcd000; /* Yellow border for content */
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #333; /* Dark background for footer */
+      color: #fcd000; /* Yellow text */
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Encryption Playground</h1>
+  </header>
+
+  <main>
+
+    <table>
+      <tr>
+        <td id="dropdown-cell">
+          <!-- Encryption Dropdown -->
+          <label for="encryption-algorithm">Choose Encryption Algorithm:</label>
+          <select id="encryption-algorithm" onchange="changeEncryptionAlgorithm()">
+			<option value="" hidden>Choose an algorithm</option>
+            <option value="caesar">Caesar Cipher</option>
+            <option value="vigenere">Vigenere Cipher</option>
+            <option value="playfair">Playfair Cipher</option>
+            <option value="affine">Affine Cipher</option>
+            <option value="multiplicative">Multiplicative Cipher</option>
+			<option value="monoalphabetic">Monoalphabetic Cipher</option>
+			<option value="hill">Hill Cipher</option>
+          </select>
+        </td>
+        <td id="content-cell">
+          <!-- Content Container -->
+          <div id="encryption-content" class="encryption-section">
+            <!-- The content for each encryption algorithm will be dynamically loaded here -->
+          </div>
+        </td>
+      </tr>
+    </table>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Encryption Playground</p>
+  </footer>
+
+  <script src="caesar.js"></script>
+  <script src="vigenere.js"></script>
+  <script src="playfair.js"></script>
+  <script src="affine.js"></script>
+  <script src="multiplicative.js"></script>
+  <script src="monoalphabetic.js"></script>
+  <script src="hill.js"></script>
+
+  <script>
+    // Function to handle the change in the selected encryption algorithm
+    function changeEncryptionAlgorithm() {
+      var selectedAlgorithm = document.getElementById("encryption-algorithm").value;
+      var contentContainer = document.getElementById("encryption-content");
+
+      // Clear the content container
+      contentContainer.innerHTML = "";
+
+      // Load the content for the selected encryption algorithm
+      switch (selectedAlgorithm) {
+         case "caesar":
+          contentContainer.innerHTML = `
+            <h2>Caesar Cipher Encryption/Decryption</h2>
+
+			<label for="plaintext">Enter Text:</label>
+			<input type="text" id="plaintext" placeholder="Text to encrypt/decrypt">
+			
+			<label for="shift">Shift Value:</label>
+			<input type="number" id="shift" placeholder="Enter shift value">
+			
+			<button onclick="encryptcaesar()">Encrypt</button>
+			<button onclick="decryptcaesar()">Decrypt</button>
+			
+			<p id="resultcaesar"></p>
+          `;
+          break;
+
+        default:
+          break;
+        case "vigenere":
+          contentContainer.innerHTML = `
+            <h2>Vigenère Cipher Encryption/Decryption</h2>
+
+			<label for="plaintext">Enter Text:</label>
+			<input type="text" id="plaintext" placeholder="Text to encrypt/decrypt">
+			
+			<label for="keyword">Keyword:</label>
+			<input type="text" id="keyword" placeholder="Enter keyword">
+			
+			<button onclick="encryptvigenere()">Encrypt</button>
+			<button onclick="decryptvigenere()">Decrypt</button>
+			
+			<p id="resultVigenere"></p>
+          `;
+          break;
+        case "playfair":
+          contentContainer.innerHTML = `
+			<h2>Playfair Cipher Encryption/Decryption</h2>
+			
+			<label for="plaintext">Enter Text:</label>
+			<input type="text" id="plaintext" placeholder="Text to encrypt/decrypt">
+			
+			<label for="key">Enter Key:</label>
+			<input type="text" id="key" placeholder="Enter key">
+			
+			<button onclick="executePlayfairCipher(true)">Encrypt</button>
+			<button onclick="executePlayfairCipher(false)">Decrypt</button>
+			
+			<p id="resultPlayfair"></p>
+          `;
+          break;
+		case "affine":
+          contentContainer.innerHTML = `
+            <h2>Affine Cipher Encryption/Decryption</h2>
+
+			<label for="plaintext">Enter Text:</label>
+			<input type="text" id="plaintext" placeholder="Text to encrypt/decrypt">
+		
+			<label for="a">Enter A (Multiplicative Key):</label>
+			<input type="number" id="a" placeholder="Enter a number">
+		
+			<label for="b">Enter B (Additive Key):</label>
+			<input type="number" id="b" placeholder="Enter a number">
+		
+			<button onclick="encryptAffineCipher()">Encrypt</button>
+			<button onclick="decryptAffineCipher()">Decrypt</button>
+		
+			<p id="resultAffineCipher"></p>
+          `;
+          break;
+		case "multiplicative":
+          contentContainer.innerHTML = `
+			<h2>Multiplicative Cipher Encryption/Decryption</h2>
+		
+			<label for="plaintext">Enter Text:</label>
+			<input type="text" id="plaintext" placeholder="Text to encrypt/decrypt">
+		
+			<label for="a">Enter A (Multiplicative Key):</label>
+			<input type="number" id="a" placeholder="Enter a number">
+		
+			<button onclick="encryptMultiplicativeCipher()">Encrypt</button>
+			<button onclick="decryptMultiplicativeCipher()">Decrypt</button>
+		
+			<p id="resultMultiplicativeCipher"></p>
+          `;
+          break;
+		case "monoalphabetic":
+          contentContainer.innerHTML = `
+			<h2>Custom Monoalphabetic Cipher</h2>
+
+			<label for="inputText">Enter Text:</label>
+			<textarea id="inputText" rows="4" cols="50"></textarea><br>
+			
+			<button onclick="encryptmonoalphabetic()">Encrypt</button>
+			<button onclick="decryptmonoalphabetic()">Decrypt</button>
+			
+			<label for="outputText">Result:</label>
+			<textarea id="outputText" rows="4" cols="50" readonly></textarea>
+			`;
+		  break;
+		case "hill":
+          contentContainer.innerHTML = `
+			<h2>Hill Cipher</h2>
+
+			<label for="inputText">Enter Text (4 letters):</label>
+			<input type="text" id="inputText" maxlength="4"><br>
+			
+			<label for="keyMatrix">Enter Key Matrix (2x2):</label>
+			<input type="text" id="keyMatrix" placeholder="a b c d"><br>
+			
+			<button onclick="encrypthill()">Encrypt</button>
+			<button onclick="decrypthill()">Decrypt</button>
+			
+			<label for="outputText">Result:</label>
+			<input type="text" id="outputText" readonly>
+		  `;
+		  break;
+      }
+    }
+	
+	
+//caesarCipher
+function caesarCipher(str, shift) {
+        shift = shift % 26;
+        const charArray = str.split('');
+
+        for (let i = 0; i < charArray.length; i++) {
+            const char = charArray[i];
+
+            if (/[a-zA-Z]/.test(char)) {
+                const isUpperCase = char === char.toUpperCase();
+                let charCode = char.charCodeAt(0) - (isUpperCase ? 65 : 97);
+                charCode = (charCode + shift + 26) % 26;
+                charArray[i] = String.fromCharCode(charCode + (isUpperCase ? 65 : 97));
+            }
+        }
+
+        return charArray.join('');
+    }
+
+    function encryptcaesar() {
+        const plaintext = document.getElementById('plaintext').value;
+        const shift = parseInt(document.getElementById('shift').value, 10);
+        const encryptedText = caesarCipher(plaintext, shift);
+        document.getElementById('resultcaesar').textContent = `Encrypted: ${encryptedText}`;
+    }
+
+    function decryptcaesar() {
+        const plaintext = document.getElementById('plaintext').value;
+        const shift = parseInt(document.getElementById('shift').value, 10);
+        const decryptedText = caesarCipher(plaintext, -shift); // Decrypt by shifting in the opposite direction
+        document.getElementById('resultcaesar').textContent = `Decrypted: ${decryptedText}`;
+    }
+	// akhir caesarCipher
+	
+	
+	
+	//vigenereCipher
+	function vigenereCipher(plaintext, keyword, encrypt) {
+        const charArray = plaintext.split('');
+        const keywordArray = keyword.split('');
+        let keyIndex = 0;
+
+        for (let i = 0; i < charArray.length; i++) {
+            const char = charArray[i];
+
+            if (/[a-zA-Z]/.test(char)) {
+                const isUpperCase = char === char.toUpperCase();
+                const baseCharCode = isUpperCase ? 65 : 97;
+
+                const keywordChar = keywordArray[keyIndex % keyword.length];
+                const keywordShift = keywordChar.toUpperCase().charCodeAt(0) - 65;
+
+                let charCode = char.charCodeAt(0) - baseCharCode;
+                charCode = encrypt ? (charCode + keywordShift) % 26 : (charCode - keywordShift + 26) % 26;
+                charArray[i] = String.fromCharCode(charCode + baseCharCode);
+
+                keyIndex++;
+            }
+        }
+
+        return charArray.join('');
+    }
+
+    function encryptvigenere() {
+        const plaintext = document.getElementById('plaintext').value;
+        const keyword = document.getElementById('keyword').value;
+        const encryptedText = vigenereCipher(plaintext, keyword, true);
+        document.getElementById('resultVigenere').textContent = `Encrypted: ${encryptedText}`;
+    }
+
+    function decryptvigenere() {
+        const plaintext = document.getElementById('plaintext').value;
+        const keyword = document.getElementById('keyword').value;
+        const decryptedText = vigenereCipher(plaintext, keyword, false);
+        document.getElementById('resultVigenere').textContent = `Decrypted: ${decryptedText}`;
+    }
+	//akhir vigenereCipher
+	
+	
+	// playfair
+	function createPlayfairMatrix(key) {
+        const alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
+        let keyMatrix = key.toUpperCase().replace(/J/g, 'I');
+        let matrix = [];
+
+        // Fill the matrix with unique characters from the key
+        for (let char of keyMatrix) {
+            if (!matrix.includes(char)) {
+                matrix.push(char);
+            }
+        }
+
+        // Fill the matrix with remaining characters from the alphabet
+        for (let char of alphabet) {
+            if (!matrix.includes(char)) {
+                matrix.push(char);
+            }
+        }
+
+        return matrix;
+    }
+
+    function executePlayfairCipher(encrypt) {
+        const plaintext = document.getElementById('plaintext').value;
+        const key = document.getElementById('key').value;
+        const result = playfairCipher(plaintext, key, encrypt);
+        document.getElementById('resultPlayfair').textContent = encrypt ? `Encrypted: ${result}` : `Decrypted: ${result}`;
+    }
+
+    function playfairCipher(plaintext, key, encrypt) {
+        let matrix = createPlayfairMatrix(key);
+        let result = '';
+        plaintext = plaintext.toUpperCase().replace(/J/g, 'I');
+
+        for (let i = 0; i < plaintext.length; i += 2) {
+            let pair = plaintext.substr(i, 2);
+            let encryptedPair = playfairPair(pair, matrix, encrypt);
+            result += encryptedPair;
+        }
+
+        return result;
+    }
+
+    function playfairPair(pair, matrix, encrypt) {
+        let char1 = pair.charAt(0);
+        let char2 = pair.charAt(1);
+
+        let row1, col1, row2, col2;
+
+        // Find the positions of the characters in the matrix
+        for (let i = 0; i < 25; i++) {
+            if (matrix[i] === char1) {
+                row1 = Math.floor(i / 5);
+                col1 = i % 5;
+            }
+            if (matrix[i] === char2) {
+                row2 = Math.floor(i / 5);
+                col2 = i % 5;
+            }
+        }
+
+        let encryptedPair = '';
+
+        if (row1 === row2) {
+            // Same row
+            encryptedPair += matrix[row1 * 5 + (col1 + (encrypt ? 1 : -1) + 5) % 5];
+            encryptedPair += matrix[row2 * 5 + (col2 + (encrypt ? 1 : -1) + 5) % 5];
+        } else if (col1 === col2) {
+            // Same column
+            encryptedPair += matrix[((row1 + (encrypt ? 1 : -1) + 5) % 5) * 5 + col1];
+            encryptedPair += matrix[((row2 + (encrypt ? 1 : -1) + 5) % 5) * 5 + col2];
+        } else {
+            // Forming a rectangle
+            encryptedPair += matrix[row1 * 5 + col2];
+            encryptedPair += matrix[row2 * 5 + col1];
+        }
+
+        return encryptedPair;
+    }
+	// akhir Playfair
+	
+	//Affine
+	function modInverse(a, m) {
+            for (let x = 1; x < m; x++) {
+                if ((a * x) % m === 1) {
+                    return x;
+                }
+            }
+            return 1;
+        }
+
+        function affineCipher(plaintext, a, b, encrypt) {
+            const m = 26; // Size of the alphabet
+            const resultArray = [];
+
+            for (let i = 0; i < plaintext.length; i++) {
+                const char = plaintext.charAt(i);
+
+                if (/[a-zA-Z]/.test(char)) {
+                    const isUpperCase = char === char.toUpperCase();
+                    const baseCharCode = isUpperCase ? 65 : 97;
+                    const charCode = char.charCodeAt(0) - baseCharCode;
+
+                    let transformedCharCode;
+
+                    if (encrypt) {
+                        // Encryption: E(x) = (ax + b) mod m
+                        transformedCharCode = (a * charCode + b) % m;
+                    } else {
+                        // Decryption: D(x) = a^(-1) * (x - b) mod m
+                        const aInverse = modInverse(a, m);
+                        transformedCharCode = (aInverse * (charCode - b + m)) % m;
+                    }
+
+                    resultArray.push(String.fromCharCode(transformedCharCode + baseCharCode));
+                } else {
+                    // Preserve non-alphabetic characters
+                    resultArray.push(char);
+                }
+            }
+
+            return resultArray.join('');
+        }
+
+        function encryptAffineCipher() {
+            const plaintext = document.getElementById('plaintext').value;
+            const a = parseInt(document.getElementById('a').value, 10);
+            const b = parseInt(document.getElementById('b').value, 10);
+            const encryptedText = affineCipher(plaintext, a, b, true);
+            document.getElementById('resultAffineCipher').textContent = `Encrypted: ${encryptedText}`;
+        }
+
+        function decryptAffineCipher() {
+            const ciphertext = document.getElementById('plaintext').value;
+            const a = parseInt(document.getElementById('a').value, 10);
+            const b = parseInt(document.getElementById('b').value, 10);
+            const decryptedText = affineCipher(ciphertext, a, b, false);
+            document.getElementById('resultAffineCipher').textContent = `Decrypted: ${decryptedText}`;
+        }
+	
+	//akhir Affine
+	
+	//Multiplicative
+        function modInverse(a, m) {
+            for (let x = 1; x < m; x++) {
+                if ((a * x) % m === 1) {
+                    return x;
+                }
+            }
+            return 1;
+        }
+
+        function multiplicativeCipher(plaintext, a, encrypt) {
+            const m = 26; // Size of the alphabet
+            const resultArray = [];
+
+            for (let i = 0; i < plaintext.length; i++) {
+                const char = plaintext.charAt(i);
+
+                if (/[a-zA-Z]/.test(char)) {
+                    const isUpperCase = char === char.toUpperCase();
+                    const baseCharCode = isUpperCase ? 65 : 97;
+                    const charCode = char.charCodeAt(0) - baseCharCode;
+
+                    let transformedCharCode;
+
+                    if (encrypt) {
+                        // Encryption: E(x) = (ax) mod m
+                        transformedCharCode = (a * charCode) % m;
+                    } else {
+                        // Decryption: D(x) = a^(-1) * x mod m
+                        const aInverse = modInverse(a, m);
+                        transformedCharCode = (aInverse * charCode + m) % m;
+                    }
+
+                    resultArray.push(String.fromCharCode(transformedCharCode + baseCharCode));
+                } else {
+                    // Preserve non-alphabetic characters
+                    resultArray.push(char);
+                }
+            }
+
+            return resultArray.join('');
+        }
+
+        function encryptMultiplicativeCipher() {
+            const plaintext = document.getElementById('plaintext').value;
+            const a = parseInt(document.getElementById('a').value, 10);
+            const encryptedText = multiplicativeCipher(plaintext, a, true);
+            document.getElementById('resultMultiplicativeCipher').textContent = `Encrypted: ${encryptedText}`;
+        }
+
+        function decryptMultiplicativeCipher() {
+            const ciphertext = document.getElementById('plaintext').value;
+            const a = parseInt(document.getElementById('a').value, 10);
+            const decryptedText = multiplicativeCipher(ciphertext, a, false);
+            document.getElementById('resultMultiplicativeCipher').textContent = `Decrypted: ${decryptedText}`;
+        }
+	//akhir Multiplicative
+	
+	//monoalphabetic
+	// Define a unique key for your cipher
+    const customKey = {
+        'A': 'Q', 'B': 'W', 'C': 'E', 'D': 'R', 'E': 'T',
+        'F': 'Y', 'G': 'U', 'H': 'I', 'I': 'O', 'J': 'P',
+        'K': 'A', 'L': 'S', 'M': 'D', 'N': 'F', 'O': 'G',
+        'P': 'H', 'Q': 'J', 'R': 'K', 'S': 'L', 'T': 'Z',
+        'U': 'X', 'V': 'C', 'W': 'V', 'X': 'B', 'Y': 'N',
+        'Z': 'M'
+    };
+
+    function encryptmonoalphabetic() {
+        let inputText = document.getElementById("inputText").value.toUpperCase();
+        let outputText = applyCustomCipher(inputText, customKey);
+        document.getElementById("outputText").value = outputText;
+    }
+
+    function decryptmonoalphabetic() {
+        let inputText = document.getElementById("inputText").value.toUpperCase();
+        let reverseKey = reverseCustomKey(customKey);
+        let outputText = applyCustomCipher(inputText, reverseKey);
+        document.getElementById("outputText").value = outputText;
+    }
+
+    function applyCustomCipher(text, key) {
+        let result = "";
+        for (let i = 0; i < text.length; i++) {
+            let char = text[i];
+            if (key[char]) {
+                result += key[char];
+            } else {
+                result += char;
+            }
+        }
+        return result;
+    }
+
+    function reverseCustomKey(key) {
+        let reverseKey = {};
+        for (let originalChar in key) {
+            let substituteChar = key[originalChar];
+            reverseKey[substituteChar] = originalChar;
+        }
+        return reverseKey;
+    }
+	
+	
+	//akhir monoalphabetic
+	
+	//hill
+	function encrypthill() {
+        let plaintext = document.getElementById("inputText").value.toUpperCase();
+        let keyMatrixInput = document.getElementById("keyMatrix").value;
+        let keyMatrix = parseKeyMatrix(keyMatrixInput);
+
+        if (!keyMatrix) {
+            alert("Invalid key matrix. Please enter a valid 2x2 matrix.");
+            return;
+        }
+
+        let ciphertext = hillCipherEncrypt(plaintext, keyMatrix);
+        document.getElementById("outputText").value = ciphertext;
+    }
+
+    function decrypthill() {
+        let ciphertext = document.getElementById("inputText").value.toUpperCase();
+        let keyMatrixInput = document.getElementById("keyMatrix").value;
+        let keyMatrix = parseKeyMatrix(keyMatrixInput);
+
+        if (!keyMatrix) {
+            alert("Invalid key matrix. Please enter a valid 2x2 matrix.");
+            return;
+        }
+
+        let inverseKey = getInverseKeyMatrix(keyMatrix);
+        let decryptedText = hillCipherEncrypt(ciphertext, inverseKey);
+        document.getElementById("outputText").value = decryptedText;
+    }
+
+    function parseKeyMatrix(input) {
+        let values = input.split(" ");
+        if (values.length !== 4) {
+            return null;
+        }
+
+        let matrix = [
+            [parseInt(values[0]), parseInt(values[1])],
+            [parseInt(values[2]), parseInt(values[3])]
+        ];
+
+        return matrix;
+    }
+
+    function hillCipherEncrypt(text, keyMatrix) {
+        // Convert text to numerical values (A=0, B=1, ..., Z=25)
+        let numericalValues = text.split("").map(char => char.charCodeAt(0) - 65);
+
+        // Apply the Hill Cipher encryption
+        let result = [];
+        for (let i = 0; i < numericalValues.length; i += 2) {
+            let block = [numericalValues[i], numericalValues[i + 1]];
+            let encryptedBlock = multiplyMatrix(keyMatrix, block);
+            result.push(...encryptedBlock);
+        }
+
+        // Convert back to letters and return the encrypted text
+        return result.map(value => String.fromCharCode(value + 65)).join("");
+    }
+
+    function multiplyMatrix(matrix1, matrix2) {
+        return [
+            (matrix1[0][0] * matrix2[0] + matrix1[0][1] * matrix2[1]) % 26,
+            (matrix1[1][0] * matrix2[0] + matrix1[1][1] * matrix2[1]) % 26
+        ];
+    }
+
+    function getInverseKeyMatrix(keyMatrix) {
+        // Calculate the determinant of the key matrix
+        let determinant = (keyMatrix[0][0] * keyMatrix[1][1] - keyMatrix[0][1] * keyMatrix[1][0]) % 26;
+
+        // Calculate the modular multiplicative inverse of the determinant
+        let detInverse = modInverse(determinant, 26);
+
+        // Calculate the adjugate of the key matrix
+        let adjugate = [
+            [keyMatrix[1][1], -keyMatrix[0][1]],
+            [-keyMatrix[1][0], keyMatrix[0][0]]
+        ];
+
+        // Calculate the inverse key matrix
+        let inverseKey = adjugate.map(row => row.map(entry => (entry * detInverse) % 26));
+
+        return inverseKey;
+    }
+
+    function modInverse(a, m) {
+        for (let i = 1; i < m; i++) {
+            if ((a * i) % m === 1) {
+                return i;
+            }
+        }
+        return 1;
+    }
+	
+	
+	//akhir hill
+	
+	
+  </script>
+
+</body>
+<!--https://github.com/mohitpanthri/EncodeMe-->
+</html>
