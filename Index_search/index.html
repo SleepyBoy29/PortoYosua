@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Index Search (GIS)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+/* CSS Styles */
+body {
+    background: #345;
+    font-family: Arial, sans-serif;
+    color: #ddd;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+h1, p {
+    text-align: center;
+}
+a {
+    text-decoration: none;
+    color: #ccc;
+}
+.container {
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center; /* Center all content */
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap; /* Prevent wrapping to new line */
+    margin-bottom: 20px;
+    width: 100%; /* Set width to 100% */
+}
+#dropdown-button, #search-button {
+    position: relative;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 250px; /* Set a fixed width for all buttons */
+    border: none;
+    text-align: center;
+    background-color: #000; /* Set background color to black */
+    color: #ccc;
+    padding: 15px 30px; /* Increase padding for larger size */
+    font-size: 16px; /* Increase font size */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#search-button {
+    width: 150px; /* Set a fixed width for search button */
+}
+#dropdown-button:hover, #search-button:hover {
+    background-color: #222; /* Darken background color on hover */
+}
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: #222;
+    width: 250px; /* Set minimum width equal to the dropdown button */
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #ccc;
+    padding: 8px 0;
+    display: block;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+#search-button {
+    border-radius: 0; /* Remove button border radius */
+}
+.button {
+    border: none;
+    background-color: #000;
+    color: #ccc;
+    padding: 15px 30px; /* Increase padding for larger size */
+    font-size: 16px; /* Increase font size */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.button:hover {
+    background-color: #222;
+}
+#search-box {
+    flex: 1; /* Make input expand to fill remaining space */
+    padding: 15px;
+    border: 2px solid #000;
+    font-size: 16px; /* Increase font size */
+}
+#ad {
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Google Index Search</h1>
+        <div class="search-bar">
+            <div class="dropdown">
+                <button id="dropdown-button" class="button">Video <i class="fas fa-film"></i></button>
+                <div class="dropdown-content" id="dropdown-menu">
+                    <a href="#" data-value="Video" data-icon="fas fa-film">Video <i class="fas fa-film"></i></a>
+                    <a href="#" data-value="Audio" data-icon="fas fa-headphones">Audio <i class="fas fa-headphones"></i></a>
+                    <a href="#" data-value="Ebook" data-icon="fas fa-book-open">Ebook <i class="fas fa-book-open"></i></a>
+                    <a href="#" data-value="Pictures" data-icon="fas fa-images">Pictures <i class="fas fa-images"></i></a>
+                    <a href="#" data-value="Software/Games" data-icon="fas fa-gamepad">Software/Games <i class="fas fa-gamepad"></i></a>
+                    <a href="#" data-value="Compressed" data-icon="fas fa-file">Compressed <i class="fas fa-file"></i></a>
+                </div>
+            </div>
+            <input id="search-box" placeholder="Use comma for multiple terms ..." autofocus>
+            <button id="search-button"><i class="fas fa-search"></i> Search</button>
+        </div>
+        <div id="ad">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7693179187997374"
+                 data-ad-slot="4998011866"
+                 data-ad-format="auto"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        <p><a href="#">&copy; SleepyBoy</a></p>
+    </div>
+    <script>
+        // JavaScript for dropdown and search function
+        const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+
+        dropdownButton.addEventListener('click', function() {
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('.dropdown')) {
+                if (dropdownMenu.classList.contains('show')) {
+                    dropdownMenu.classList.remove('show');
+                }
+            }
+        });
+
+        // Select dropdown option
+        dropdownMenu.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                const selectedValue = e.target.getAttribute('data-value');
+                const selectedIconClass = e.target.getAttribute('data-icon'); // Get the icon class from the selected option
+                dropdownButton.textContent = selectedValue;
+                dropdownButton.innerHTML += ` <i class="${selectedIconClass}"></i>`; // Add the selected icon to the dropdown button
+                dropdownMenu.classList.remove('show');
+            }
+        });
+
+
+        // Search function
+        const searchButton = document.querySelector('#search-button');
+        const searchBox = document.querySelector('#search-box');
+
+        searchButton.addEventListener('click', search);
+        searchBox.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                search();
+            }
+        });
+
+        function search() {
+            const query = searchBox.value.trim();
+            const type = dropdownButton.textContent.trim();
+            
+            let commonToAll = `
+                -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml)
+                -inurl:(index_of|listen77|mp3raid|mp3toss|mp3drug|index_of|wallywashis)
+                intitle:\"index.of./\"
+            `;
+            
+            const extensions = {
+                'Video': '(avi|mkv|mov|mp4|mpg|wmv)',
+                'Audio': '(ac3|flac|m4a|mp3|ogg|wav|wma)',
+                'Ebook': '(CBZ|CBR|CHM|DOC|DOCX|EPUB|MOBI|ODT|PDF|RTF|txt)',
+                'Pictures': '(bmp|gif|jpg|png|psd|tif|tiff)',
+                'Software/Games': '(apk|exe|iso|rar|tar|zip)',
+                'Compressed': '(apk|exe|iso|rar|tar|zip|7z)'
+            };
+
+            let searchTerms = query.split(',').map(term => `intext:"${term}"`).join(' ');
+            let finalQuery = `${searchTerms} ${extensions[type]} ${commonToAll}`;
+            let url = `https://www.google.com/search?q=${encodeURIComponent(finalQuery)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
